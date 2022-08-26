@@ -68,7 +68,7 @@ Enemy.prototype.generateSpeed = function() {
 };
 
 Enemy.prototype.checkCollisions = function() {
-    if(Math.abs(this.x - this.player.x) <= CHARACTERS_WIDTH - SIZE_DIFFERENCE && Math.abs(this.y - this.player.y) <= SIZE_DIFFERENCE){
+    if(Math.abs(this.x - this.player.x) <= CHARACTERS_WIDTH - SIZE_DIFFERENCE * 1.5 && Math.abs(this.y - this.player.y) <= SIZE_DIFFERENCE){
         this.player.loses += 1;
         addWinLossPointsToBlock(pointsBlock, this.player);
         this.player.resetInitialPosition();

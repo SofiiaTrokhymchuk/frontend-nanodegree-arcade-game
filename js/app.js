@@ -24,8 +24,6 @@ function addWinLossPointsToBlock(pointsBlock, player){
     `;
 }
 
-const pointsBlock = createWinLossPointsBlock();
-
 const TILE_WIDTH = 101;
 const TILE_HEIGHT = 83;
 
@@ -75,7 +73,7 @@ Enemy.prototype.checkCollisions = function() {
     if(Math.abs(this.x - this.player.x) <= CHARACTERS_WIDTH - CHARACTERS_SIZE_DIFFERENCE * 1.5 
     && Math.abs(this.y - this.player.y) <= CHARACTERS_SIZE_DIFFERENCE){
         this.player.loses += 1;
-        addWinLossPointsToBlock(pointsBlock, this.player);
+        addWinLossPointsToBlock(this.player.pointsBlock, this.player);
         this.player.resetInitialPosition();
     }
 };
@@ -91,6 +89,7 @@ const Player = function(x, y) {
     this.y = y;
     this.wins = 0;
     this.loses = 0;
+    this.pointsBlock = createWinLossPointsBlock();
 };
 
 Player.prototype.update = function() {
@@ -133,7 +132,7 @@ Player.prototype.checkPosition = function() {
         this.y = BOARD_HEIGHT - 20;
     }else if(this.y < 0){
         this.wins += 1;
-        addWinLossPointsToBlock(pointsBlock, this);
+        addWinLossPointsToBlock(this.pointsBlock, this);
         this.resetInitialPosition();
     };
 };
